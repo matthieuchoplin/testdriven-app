@@ -14,7 +14,7 @@ recreatedb:
 	docker-compose exec users python manage.py recreate_db
 
 test:
-	docker-compose exec users python manage.py test
+	docker-compose exec -T users python manage.py test
 
 shell:
 	docker-compose exec users flask shell

@@ -2,8 +2,8 @@ from flask import Blueprint, request, render_template
 from flask_restful import Resource, Api
 from sqlalchemy import exc
 
-from project import db
-from project.api.models import User
+from services.users.project import db
+from services.users.project.api.models import User
 
 
 users_blueprint = Blueprint("users", __name__, template_folder="./templates")
@@ -70,7 +70,7 @@ class Users(Resource):
             else:
                 response_object = {
                     "status": "success",
-                    "data": {
+                    "data": {  # type: ignore
                         "id": user.id,
                         "username": user.username,
                         "email": user.email,

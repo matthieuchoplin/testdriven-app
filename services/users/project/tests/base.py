@@ -1,7 +1,7 @@
 from flask_testing import TestCase
 
-from project import db
-from project import create_app
+from services.users.project import db
+from services.users.project import create_app
 
 app = create_app()
 
