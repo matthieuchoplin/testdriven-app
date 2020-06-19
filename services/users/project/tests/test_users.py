@@ -16,6 +16,21 @@ def add_user(username, email):
 class TestUserService(BaseTestCase):
     """Tests for the Users Service."""
 
+    def test_main_add_user(self):
+        """
+        Ensure a new user can be added to the database via a POST request.
+        """
+        with self.client:
+            response = self.client.post(
+                '/',
+                data=dict(username='michael', email='michael@sonotreal.com'),
+                follow_redirects=True
+            )
+            self.assertEqual(response.status_code, 200)
+            self.assertIn(b'All Users', response.data)
+            self.assertNotIn(b'<p>No users!</p>', response.data)
+            self.assertIn(b'michael', response.data)
+
     def test_users(self):
         """Ensure the /ping route behaves correctly."""
         response = self.client.get("/users/ping")
