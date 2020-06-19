@@ -11,9 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build
-        run: make run-client
-      - name: Test
-        run: make test-client
+      - name: Build and run tests
+        run: |
+          make build-client up-client test-client
         env:
           CI: true

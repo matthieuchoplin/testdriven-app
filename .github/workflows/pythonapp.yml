@@ -22,4 +22,4 @@ jobs:
         python-version: 3.7
     - name: Build and run tests
       run: |
-        make build up test
+        make build-server up-server test-server

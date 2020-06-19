@@ -25,11 +25,17 @@ help:
 include .env
 export $(shell sed 's/=.*//' .env)
 
-build:  ## Build environment
-	docker-compose up -d --build
+build-server:  ## Build server
+	docker-compose build users
 
-up:  ## Bring containers up
-	docker-compose up -d
+build-client:  ## Build client
+	docker-compose build client
+
+up-server:  ## Bring users service containers up
+	docker-compose up -d users
+
+up-client:  ## Bring client container up
+	docker-compose up -d client
 
 down:  ## down
 	docker-compose down
@@ -38,7 +44,7 @@ run:  ## run
 	docker-compose up
 
 run-client:  ## run client
-	docker-compose up --build -d client
+	docker-compose up client
 
 test-client:  ## test client
 	docker-compose exec -T client npm test a --watchAll=false
@@ -46,7 +52,7 @@ test-client:  ## test client
 recreatedb:  ## recreatedb
 	docker-compose exec users python manage.py recreate_db
 
-test:  ## test
+test-server:  ## test
 	docker-compose exec -T users python manage.py test
 
 test-coverage: ## Run the tests with coverage
