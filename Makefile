@@ -22,6 +22,9 @@ export PRINT_HELP_PYSCRIPT # End of python section
 help:
 	@python -c "$$PRINT_HELP_PYSCRIPT" < $(MAKEFILE_LIST)
 
+include .env
+export $(shell sed 's/=.*//' .env)
+
 build:  ## Build environment
 	docker-compose up -d --build
 
@@ -33,6 +36,9 @@ down:  ## down
 
 run:  ## run
 	docker-compose up
+
+run-client:  ## run client
+	docker-compose up --build -d client
 
 recreatedb:  ## recreatedb
 	docker-compose exec users python manage.py recreate_db
