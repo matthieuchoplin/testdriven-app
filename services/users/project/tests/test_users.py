@@ -1,9 +1,9 @@
 import json
 import unittest
 
-from services.users.project.tests.base import BaseTestCase
-from services.users.project import db
-from services.users.project.api.models import User
+from project import db
+from project.api.models import User
+from project.tests.base import BaseTestCase
 
 
 def add_user(username, email):

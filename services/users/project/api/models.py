@@ -1,9 +1,9 @@
 from sqlalchemy.sql import func
 
-from services.users.project import db
+from project import db
 
 
-class User(db.Model):  # type: ignore
+class User(db.Model):
 
     __tablename__ = "users"
 
