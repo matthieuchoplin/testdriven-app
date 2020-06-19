@@ -11,6 +11,8 @@ db = SQLAlchemy()
 Here we are using the Application Factory pattern.
 See: https://flask.palletsprojects.com/en/1.1.x/patterns/appfactories/
 """
+
+
 def create_app(script_info=None):
 
     # instantiate the app

@@ -22,14 +22,14 @@ class TestUserService(BaseTestCase):
         """
         with self.client:
             response = self.client.post(
-                '/',
-                data=dict(username='michael', email='michael@sonotreal.com'),
-                follow_redirects=True
+                "/",
+                data=dict(username="michael", email="michael@sonotreal.com"),
+                follow_redirects=True,
             )
             self.assertEqual(response.status_code, 200)
-            self.assertIn(b'All Users', response.data)
-            self.assertNotIn(b'<p>No users!</p>', response.data)
-            self.assertIn(b'michael', response.data)
+            self.assertIn(b"All Users", response.data)
+            self.assertNotIn(b"<p>No users!</p>", response.data)
+            self.assertIn(b"michael", response.data)
 
     def test_users(self):
         """Ensure the /ping route behaves correctly."""

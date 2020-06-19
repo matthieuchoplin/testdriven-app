@@ -40,6 +40,9 @@ recreatedb:  ## recreatedb
 test:  ## test
 	docker-compose exec -T users python manage.py test
 
+test-coverage: ## Run the tests with coverage
+	docker-compose exec users python manage.py cov
+
 shell:  ## shell
 	docker-compose exec users flask shell
 
