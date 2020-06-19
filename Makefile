@@ -40,6 +40,9 @@ run:  ## run
 run-client:  ## run client
 	docker-compose up --build -d client
 
+test-client:  ## test client
+	docker-compose exec -T client npm test a --watchAll=false
+
 recreatedb:  ## recreatedb
 	docker-compose exec users python manage.py recreate_db
 

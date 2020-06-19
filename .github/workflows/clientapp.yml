@@ -2,7 +2,7 @@
 # For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
 
-name: Build
+name: Client App
 
 on: [push]
 
@@ -16,4 +16,6 @@ jobs:
       - name: Build
         run: make run-client
       - name: Test
-        run: cd ../../services/client && npm test a
+        run: make test-client
+        env:
+          CI: true
