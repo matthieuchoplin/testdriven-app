@@ -1,27 +1,19 @@
 # This workflow will install react dependencies, run tests and lint with a single version of node
 # For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+
+name: Build
 
 on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run build --if-present
-    - run: npm test
-      env:
-        CI: true
+      - uses: actions/checkout@v1
+      - name: Install
+        run: yarn --no-progress --non-interactive --no-lockfile
+      - name: Build
+        run: make run-client
+      - name: Test
+        run: cd ../../services/client && npm test a
