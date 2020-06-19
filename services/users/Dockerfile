@@ -17,6 +17,9 @@ WORKDIR /usr/src/app
 COPY ./requirements.txt /usr/src/app/requirements.txt
 RUN pip install -r requirements.txt
 
+# don't write pycs
+ENV PYTHONDONTWRITEBYTECODE=1
+
 # add entrypoint.sh
 COPY ./entrypoint.sh /usr/src/app/entrypoint.sh
 RUN chmod +x /usr/src/app/entrypoint.sh
