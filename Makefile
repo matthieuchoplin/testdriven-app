@@ -28,6 +28,13 @@ export $(shell sed 's/=.*//' .env)
 build-server:  ## Build server
 	docker-compose build users
 
+migrate-init:
+	docker-compose exec users python manage.py db init
+
+migrate:
+	docker-compose exec users python manage.py db migrate
+	docker-compose exec users python manage.py db upgrade
+
 build-client:  ## Build client
 	docker-compose build client
 
@@ -42,6 +49,10 @@ down:  ## down
 
 run:  ## run
 	docker-compose up
+
+run-d:  ## run in detached mode
+	docker-compose up -d users
+	docker-compose up -d client
 
 run-client:  ## run client
 	docker-compose up client
