@@ -54,7 +54,6 @@ class UsersList(Resource):
             db.session.rollback()
             return response_object, 400
 
-
     def get(self):
         """Get all users"""
         response_object = {

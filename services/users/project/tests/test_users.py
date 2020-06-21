@@ -1,16 +1,8 @@
 import json
 import unittest
 
-from project import db
-from project.api.models import User
 from project.tests.base import BaseTestCase
-
-
-def add_user(username, email, password):
-    user = User(username=username, email=email, password=password)
-    db.session.add(user)
-    db.session.commit()
-    return user
+from project.tests.utils import add_user
 
 
 class TestUserService(BaseTestCase):
@@ -23,7 +15,11 @@ class TestUserService(BaseTestCase):
         with self.client:
             response = self.client.post(
                 "/",
-                data=dict(username="michael", email="michael@sonotreal.com", password="greaterthaneight"),
+                data=dict(
+                    username="michael",
+                    email="michael@sonotreal.com",
+                    password="greaterthaneight",
+                ),
                 follow_redirects=True,
             )
             self.assertEqual(response.status_code, 200)
@@ -45,7 +41,11 @@ class TestUserService(BaseTestCase):
             response = self.client.post(
                 "/users",
                 data=json.dumps(
-                    {"username": "michael", "email": "michael@mherman.org", "password": "greaterthaneight"}
+                    {
+                        "username": "michael",
+                        "email": "michael@mherman.org",
+                        "password": "greaterthaneight",
+                    }
                 ),
                 content_type="application/json",
             )
@@ -86,14 +86,22 @@ class TestUserService(BaseTestCase):
             self.client.post(
                 "/users",
                 data=json.dumps(
-                    {"username": "michael", "email": "michael@mherman.org", "password": "greaterthaneight"}
+                    {
+                        "username": "michael",
+                        "email": "michael@mherman.org",
+                        "password": "greaterthaneight",
+                    }
                 ),
                 content_type="application/json",
             )
             response = self.client.post(
                 "/users",
                 data=json.dumps(
-                    {"username": "michael", "email": "michael@mherman.org",  "password": "greaterthaneight"}
+                    {
+                        "username": "michael",
+                        "email": "michael@mherman.org",
+                        "password": "greaterthaneight",
+                    }
                 ),
                 content_type="application/json",
             )
