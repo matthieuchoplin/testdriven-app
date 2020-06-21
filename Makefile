@@ -63,7 +63,7 @@ test-client:  ## test client
 recreatedb:  ## recreatedb
 	docker-compose exec users python manage.py recreate_db
 
-test-server:  ## test
+test-server: up-server  ## test
 	docker-compose exec -T users python manage.py test
 
 test-coverage: ## Run the tests with coverage
