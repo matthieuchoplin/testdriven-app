@@ -60,7 +60,7 @@ run-client:  ## run client
 test-client:  ## test client
 	docker-compose exec -T client npm test a --watchAll=false
 
-recreatedb:  ## recreatedb
+recreatedb:  up-server  ## recreatedb
 	docker-compose exec users python manage.py recreate_db
 
 test-server: up-server  ## test
